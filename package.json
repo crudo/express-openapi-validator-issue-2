@@ -1,0 +1,21 @@
+{
+  "name": "express-openapi-validator-res-issue",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "spectral lint index.yaml",
+    "yaml2json": "swagger-cli bundle index.yaml --outfile=index.json"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "4.17.1",
+    "express-openapi-validator": "4.12.1"
+  },
+  "devDependencies": {
+    "@apidevtools/swagger-cli": "4.0.4",
+    "@stoplight/spectral": "5.8.1"
+  }
+}

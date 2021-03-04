@@ -1,0 +1,134 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "version": "0.0.1",
+    "title": "My API",
+    "description": "Best API ever",
+    "contact": {
+      "name": "My Support",
+      "email": "support@example.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "127.0.0.1/api"
+    }
+  ],
+  "paths": {
+    "/clusters": {
+      "get": {
+        "tags": [
+          "Clusters"
+        ],
+        "description": "Returns a list of clusters",
+        "operationId": "getClusters",
+        "responses": {
+          "200": {
+            "description": "Clusters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "cluster_id": {
+                        "type": "string"
+                      },
+                      "cluster_name": {
+                        "type": "string"
+                      }
+                    },
+                    "example": {
+                      "cluster_id": "abcdefgh123456789",
+                      "cluster_name": "MyCluster"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/paths/~1users/get/responses/400"
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "description": "Returns a list of users",
+        "operationId": "getUsers",
+        "responses": {
+          "200": {
+            "description": "Users",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "user_id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      }
+                    },
+                    "example": {
+                      "user_id": "1",
+                      "name": "John"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "number"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "example": {
+                    "error": {
+                      "type": 400,
+                      "message": "Bad request"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "tags": [
+    {
+      "name": "Clusters"
+    },
+    {
+      "name": "Users"
+    }
+  ]
+}

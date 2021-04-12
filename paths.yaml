@@ -1,6 +1,4 @@
 /clusters:
   $ref: "paths/clusters.yaml"
-/clusters/{clusterId}:
-  $ref: "paths/cluster-item.yaml"
 /users:
   $ref: "paths/users.yaml"

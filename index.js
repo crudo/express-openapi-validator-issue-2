@@ -21,20 +21,6 @@ app.get("/clusters", (req, res) => {
   res.json(data);
 });
 
-app.get("/clusters/:clusterId", (req, res) => {
-  let data = {};
-
-  // fake only one cluster
-  if (req.params.clusterId === "1") {
-    // missing required cluster_id
-    data = { cluster_name: "Alpha" };
-
-    res.json(data);
-  } else {
-    res.json({ error: 404 });
-  }
-});
-
 app.use((err, req, res, next) => {
   // format error
   res.status(err.status || 500).json({

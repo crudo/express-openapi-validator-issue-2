@@ -24,8 +24,6 @@ app.get("/clusters", (req, res) => {
 app.get("/clusters/:clusterId", (req, res) => {
   let data = {};
 
-  console.log("🔔  req.params", req.params);
-
   // fake only one cluster
   if (req.params.clusterId === "1") {
     // missing required cluster_id

@@ -1,9 +1,10 @@
-# express-openapi-validator-res-issue
+# express-openapi-validator-issue-2
 
 Workflow:
 
 1. run `node index`
-2. see error
+2. `curl -sS http://localhost:3333/clusters`
+3. Expected response validation error.
 
 ---
 
@@ -49,7 +50,13 @@ get:
       $ref: "../responses/400.yaml"
 ```
 
-This will NOT fail:
+```
+{
+  "message": "Cannot read property 'content' of undefined"
+}
+```
+
+This will NOT fail - will reponse with proper error message for validation:
 
 ```yaml
 get:
@@ -60,6 +67,17 @@ get:
   responses:
     "200":
       $ref: "../responses/clusters.yaml"
+```
+
+```
+{
+  "message": ".response should be array",
+  "errors": [{
+    "path": ".response",
+    "message": "should be array",
+    "errorCode": "type.openapi.validation"
+  }]
+}
 ```
 
 It will not fail, if you reference response only once:
@@ -83,20 +101,3 @@ users > 200, 400
 `npm run yaml2json` to create json from spec
 
 ---
-
-Issue:
-
-```
-crudo@bee > node index
-
-Example app listening at http://localhost:3333
-/Users/XXX/Sites/git/express-openapi-validator-res-issue/node_modules/express-openapi-validator/dist/middlewares/parsers/schema.preprocessor.js:294
-if (rschema.content) {
-^
-
-TypeError: Cannot read property 'content' of undefined
-at SchemaPreprocessor.extractResponseSchemaNodes (/Users/XXX/Sites/git/express-openapi-validator-res-issue/node_modules/express-openapi-validator/dist/middlewares/parsers/schema.preprocessor.js:294:25)
-at SchemaPreprocessor.gatherSchemaNodesFromPaths (/Users/XXX/Sites/git/express-openapi-validator-res-issue/node_modules/express-openapi-validator/dist/middlewares/parsers/schema.preprocessor.js:87:49)
-at SchemaPreprocessor.preProcess (/Users/XXX/Sites/git/express-openapi-validator-res-issue/node_modules/express-openapi-validator/dist/middlewares/parsers/schema.preprocessor.js:46:24)
-at /Users/XXX/Sites/git/express-openapi-validator-res-issue/node_modules/express-openapi-validator/dist/openapi.validator.js:83:95
-```

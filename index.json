@@ -11,7 +11,7 @@
   },
   "servers": [
     {
-      "url": "127.0.0.1/api"
+      "url": "127.0.0.1"
     }
   ],
   "paths": {
@@ -30,19 +30,58 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "type": "object",
-                    "properties": {
-                      "cluster_id": {
-                        "type": "string"
-                      },
-                      "cluster_name": {
-                        "type": "string"
-                      }
+                    "$ref": "#/paths/~1clusters~1%7BclusterId%7D/get/responses/200/content/application~1json/schema"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/paths/~1users/get/responses/400"
+          }
+        }
+      }
+    },
+    "/clusters/{clusterId}": {
+      "get": {
+        "tags": [
+          "Clusters"
+        ],
+        "description": "Returns a cluster",
+        "operationId": "getCluster",
+        "parameters": [
+          {
+            "name": "clusterId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "cluster1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cluster",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "cluster_id": {
+                      "type": "string"
                     },
-                    "example": {
-                      "cluster_id": "abcdefgh123456789",
-                      "cluster_name": "MyCluster"
+                    "cluster_name": {
+                      "type": "string"
                     }
+                  },
+                  "required": [
+                    "cluster_id",
+                    "cluster_name"
+                  ],
+                  "example": {
+                    "cluster_id": "abcdefgh123456789",
+                    "cluster_name": "MyCluster"
                   }
                 }
               }

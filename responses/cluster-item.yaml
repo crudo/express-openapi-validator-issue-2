@@ -1,0 +1,5 @@
+description: Cluster
+content:
+  "application/json":
+    schema:
+      $ref: "../components/cluster.yaml"

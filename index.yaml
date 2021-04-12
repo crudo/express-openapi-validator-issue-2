@@ -7,7 +7,7 @@ info:
     name: My Support
     email: support@example.com
 servers:
-  - url: 127.0.0.1/api
+  - url: 127.0.0.1
 paths:
   $ref: paths.yaml
 components:

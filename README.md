@@ -12,7 +12,7 @@ Internal error message from response validator
 
 instead of the response validation error:
 
-````
+```
 {
   "message": ".response should be array",
   "errors": [{
@@ -21,10 +21,9 @@ instead of the response validation error:
     "errorCode": "type.openapi.validation"
   }]
 }
-```.
+```
 
 Very similar to previous issue: https://github.com/cdimascio/express-openapi-validator/issues/553
-
 
 Workflow:
 
@@ -38,14 +37,14 @@ It happens only if you have multiple responses (see `path/clusters.yaml` and `pa
 
 eg.
 
-````
+```
 
 clusters > 200, 400
 users > 200, 400
 
 # 400 must reference the same response
 
-````
+```
 
 ---
 
@@ -62,7 +61,7 @@ get:
       $ref: "../responses/users.yaml"
     "400":
       $ref: "../responses/400.yaml"
-````
+```
 
 This will fail:
 
